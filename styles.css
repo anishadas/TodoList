@@ -1,0 +1,264 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Makasar&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Serif Makasar', serif;
+}
+
+body {
+    background: #005AA7;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to top, #FFFDE4, #005AA7);
+    background: linear-gradient(to top, #FFFDE4, #005AA7);
+    height: 100vh;
+    width: 100vw;
+    background-color: #c2beba;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#container {
+    background-color: white;
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+}
+
+ul {
+    list-style-type: none;
+    display: flex;
+}
+
+#input {
+    position: relative;
+}
+
+#input input {
+    padding: 20px 25px 20px 50px;
+    font-size: 1.5rem;
+    width: 500px;
+    background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    /* background-color: #f0eeed; */
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+#input input:focus {
+    background-image: none;
+    outline: 2px solid rgb(76, 160, 172);
+}
+
+#input span i {
+    position: absolute;
+    top: 24px;
+    left: 15px;
+    font-size: 1.8rem;
+    color: rgb(76, 160, 172);
+}
+
+button {
+    display: none;
+}
+
+#input button i {
+    position: absolute;
+    right: 30px;
+    top: 24px;
+    font-size: 1.5rem;
+    color: rgb(76, 160, 172);
+}
+
+button i:hover {
+    cursor: pointer;
+}
+
+.task-status {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #63605d;
+    /* border: 2px solid red; */
+    padding: 5px 0;
+    /* margin-bottom: 10px; */
+}
+
+#complete-task {
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+    width: 165px;
+    transition: all 0.1s ease-in-out;
+}
+
+#complete-task img {
+    height: 30px;
+    object-fit: contain;
+}
+
+#clear-completed {
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+    width: 150px;
+    transform: scale(1);
+    transition: all 0.1s ease-in-out;
+}
+
+#clear-completed img {
+    height: 25px;
+    object-fit: contain;
+}
+
+#complete-task:hover,
+#clear-completed:hover {
+    transform: scale(1.02);
+    cursor: pointer;
+    font-weight: 500;
+    color: rgb(76, 160, 172);
+
+}
+
+#todos {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 5px 0;
+}
+
+#todos li {
+    font-size: 1.3rem;
+    padding: 10px;
+    text-transform: capitalize;
+    color: black;
+    /* font-weight: 600; */
+    /* font-style: italic; */
+    width: 500px;
+    display: flex;
+    justify-content: space-between;
+    transition: all 0.2s ease-in-out;
+}
+#todos li:hover{
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    transition: all 0.2s ease-in-out;
+}
+
+/* hide default check box */
+#todos li input {
+    padding: 0;
+    height: initial;
+    width: initial;
+    margin-bottom: 0;
+    display: none;
+    cursor: pointer;
+}
+
+#todos label {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+}
+
+#todos label:before {
+    content: '';
+    background-color: transparent;
+    border: 2px solid black;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+    padding: 10px;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+
+#todos input:checked+label:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 13px;
+    left: 5px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: rgb(76, 160, 172);
+}
+
+#todos input:checked+label:before {
+    background: white;
+}
+
+#todos input:checked+label {
+    text-decoration: line-through;
+    font-style: italic;
+}
+
+#delete {
+    height: 40px;
+    padding: 5px;
+    border-radius: 50%;
+    transition: all ease-in-out;
+    /* box-shadow: rgba(0, 0, 0, 0.24) 3px 3px 8px; */
+}
+
+#delete img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+#delete:hover {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 4px, rgba(0, 0, 0, 0.24) 0px -1px 4px;
+    cursor: pointer;
+}
+
+.task-filters {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    color: #63605d;
+    /* border: 2px solid red; */
+}
+
+#filters {
+    width: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* border: 1px solid #000; */
+}
+
+#filters li {
+    /* border-radius: 10px;
+    padding: 3px 5px; */
+    /* text-shadow: 0px 0px 1px black; */
+    transform: scale(1);
+    transition: all 0.1s ease-in-out;
+}
+
+#filters li:hover {
+    /* background-color: #e9ba73; */
+    transform: scale(1.02);
+    cursor: pointer;
+    font-weight: 500;
+    color: rgb(76, 160, 172);
+}
+
+hr {
+    border: 1px solid #e9e5e1;
+}
+
+/* when there are no todos */
+h3 {
+    padding: 20px;
+}

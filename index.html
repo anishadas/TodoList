@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="https://kit.fontawesome.com/eab6c7e050.js"
+            crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <div id="container">
+            <div id="input">
+                <span><i class="fa-solid fa-clipboard-list"></i></span>
+                <input type="text" id="input-todo"
+                    placeholder="Enter your todos" />
+                <button id="btn">
+                    <i class="fa-solid fa-circle-plus"></i>
+                </button>
+            </div>
+            <div class="task-status">
+                <div id="complete-task">
+                    <img src="./images//double-check.png" class="completeAll"/>
+                    <p class="completeAll">complete all tasks</p>
+                </div>
+                <div id="clear-completed" >
+                    <img src="./images/checklist.png" class="clear"/>
+                    <p class="clear">clear completed</p>
+                </div>
+            </div>
+            <hr />
+            <ul id="todos">
+                <!-- <li>
+                    <input type="checkbox" id="todo" />
+                    <label for="todo">todo1</label>
+                    <div id="delete"><i class="fa-solid fa-trash"></i></div>
+                </li>
+                <li>
+                    <input type="checkbox" id="todo1" />
+                    <label for="todo1">shopping in the mall</label>
+                    <div id="delete"><i class="fa-solid fa-trash"></i></div>
+                </li>
+                <li>
+                    <input type="checkbox" id="todo12" />
+                    <label for="todo12">shopping in the mall</label>
+                    <div id="delete"><i class="fa-solid fa-trash"></i></div>
+                </li> -->
+            </ul>
+            <hr />
+            <div class="task-filters">
+                <p id="task-left">2 tasks left</p>
+                <ul id="filters">
+                    <li id="all">All</li>
+                    <li id="uncompleted">Uncomplete</li>
+                    <li id="completed">Completed</li>
+                </ul>
+            </div>
+        </div>
+        <script src="todos.js"></script>
+    </body>
+</html>
