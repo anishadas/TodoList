@@ -6,20 +6,20 @@ const todos = document.getElementById("todos");
 const tasks_left_count = document.getElementById("task-left");
 
 let Mytodos = JSON.parse(localStorage.getItem("TODOS")) || [];
-console.log(Mytodos)
+let interval;
 // listening for todos
 add_btn.addEventListener("click", handleClickToAdd);
 document.addEventListener("click", handleClickEvents);
 
 // for add todo icon
 input.addEventListener("focus", () => {
+    clearTimeout(interval)
     add_btn.style.display = "block";
 })
 input.addEventListener("blur", () => {
-    const interval = setTimeout(() => {
+    interval = setTimeout(() => {
         add_btn.style.display = "none";
-    }, 2000);
-    clearTimeout(interval);
+    },1000);
 })
 
 function handleClickToAdd(e) {
@@ -42,20 +42,20 @@ function handleClickEvents(e) {
         const id = e.target.id;
         toggleStatus(id);
     }
-    if (e.target.className== "completeAll") {
+    if (e.target.className == "completeAll") {
         commpleteAllTodos();
     }
     if (e.target.className == "clear") {
         clearCompleted();
     }
-    if (e.target.id == "all" || e.target.id=="completed" || e.target.id=="uncompleted") {
+    if (e.target.id == "all" || e.target.id == "completed" || e.target.id == "uncompleted") {
         let filter = e.target.id;
         filterTodos(filter);
     }
 }
 
 // rendering the app
-function renderTodos(todosRender=Mytodos) {
+function renderTodos(todosRender = Mytodos) {
     let count = 0;
     if (todosRender.length > 0) {
         let str = "";
@@ -65,7 +65,7 @@ function renderTodos(todosRender=Mytodos) {
             }
             str += `
             <li>
-                <input type="checkbox" id=${item.id} ${item.done?"checked":null} class="check-box"/>
+                <input type="checkbox" id=${item.id} ${item.done ? "checked" : null} class="check-box"/>
                 <label for=${item.id}>${item.text}</label>
                 <div id="delete"><img src="./images/delete.png" alt="delete" class="delete-img" id=${item.id} /></div>
             </li>
@@ -74,16 +74,16 @@ function renderTodos(todosRender=Mytodos) {
         todos.innerHTML = str;
     }
     else {
-        todos.innerHTML=`<h3>No Todos added!</h3>`
+        todos.innerHTML = `<h3>No Todos added!</h3>`
     }
-    tasks_left_count.innerHTML=`${count} task left`
+    tasks_left_count.innerHTML = `${count} task left`
 }
 // adding todos
 function addTodo(todo) {
     const list = {
         text: todo,
         id: Date.now().toString(),
-        done:false,
+        done: false,
     }
     Mytodos.push(list);
     localStorage.setItem("TODOS", JSON.stringify(Mytodos));
@@ -132,7 +132,7 @@ function filterTodos(filter) {
         const updatedTodos = Mytodos.filter(todo => todo.done != true);
         renderTodos(updatedTodos);
     }
-    else if (filter == "completed") { 
+    else if (filter == "completed") {
         const updatedTodos = Mytodos.filter(todo => todo.done == true);
         renderTodos(updatedTodos);
     }
