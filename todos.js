@@ -16,9 +16,10 @@ input.addEventListener("focus", () => {
     add_btn.style.display = "block";
 })
 input.addEventListener("blur", () => {
-    setTimeout(() => {
+    const interval = setTimeout(() => {
         add_btn.style.display = "none";
-    },2000)
+    }, 2000);
+    clearTimeout(interval);
 })
 
 function handleClickToAdd(e) {
