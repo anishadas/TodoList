@@ -14,25 +14,50 @@ body {
     background: -webkit-linear-gradient(to top, #6e7174, #232526);
     background: linear-gradient(to top, #6e7174, #232526);
     height: 100vh;
-    width: 100vw;
+    width: 100%;
+    /* border: 2px solid red; */
     background-color: #c2beba;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
+    overflow-x: hidden;
+    overflow-y: visible;
 }
 
 .header {
+    width: 100%;
+    height: 20%;
+    /* border: 2px solid red; */
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
 .header h1 {
     color: #fff;
-    font-size: 5em;
+    font-size: 4rem;
     position: absolute;
     font-family: "Poppins", sans-serif !important;
+}
+
+@media screen and (max-width:800px) {
+    .header h1 {
+        font-size: 3rem;
+    }
+
+    .task-filters #filters {
+        width: 60%;
+        /* border: 2px solid red; */
+    }
+}
+
+@media screen and (max-width:500px) {
+    .header h1 {
+        font-size: 3rem;
+    }
+
 }
 
 .header h1:nth-child(1) {
@@ -74,8 +99,9 @@ body {
 }
 
 #container {
+    width: 50%;
     background-color: white;
-    padding: 20px;
+    padding: 3%;
     box-shadow: rgba(8, 8, 8, 0.25) 0px 14px 28px, rgba(12, 9, 9, 0.22) 0px 10px 10px;
 }
 
@@ -91,7 +117,7 @@ ul {
 #input input {
     padding: 20px 25px 20px 50px;
     font-size: 1.5rem;
-    width: 500px;
+    width: 100%;
     background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     /* background-color: #f0eeed; */
     border: none;
@@ -99,6 +125,105 @@ ul {
     border-radius: 10px;
     margin-bottom: 5px;
     box-shadow: rgba(197, 197, 214, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+@media screen and (max-width:500px) {
+    #container {
+        width: 70%;
+    }
+
+    #input input {
+        padding: 10px 10px 10px 40px;
+        font-size: 1.2rem;
+    }
+
+    #input span {
+        position: relative;
+        right: 5px;
+        bottom: 28px;
+    }
+
+    #input button {
+        top: 12px;
+        right: 10px;
+    }
+
+    .task-status {
+        /* font-size: 0.8rem; */
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .task-status #complete-task,
+    .task-status #clear-completed {
+        width: 100%;
+        padding: 5px;
+        justify-content: flex-start;
+    }
+
+    .task-status #clear-completed {
+        margin-left: 8px;
+    }
+
+    .task-filters #filters {
+        display: none;
+    }
+
+    #container .task-filters {
+        /* position: relative; */
+    }
+
+    .task-filters #mob-filters {
+        display: block;
+        overflow: hidden;
+        float: left;
+    }
+
+    .task-filters #mob-filters .dropbtn {
+        padding: 3px 5px;
+        border-radius: 5px;
+        background-color: white;
+        border: none;
+        font-size: 1rem;
+        color: #63605d;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        bottom: 90px;
+        right: 80px;
+        background-color: white;
+        min-width: 100px;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+        z-index: 1;
+    }
+
+    /* li tags inside the dropdown */
+    .dropdown-content li {
+        float: none;
+        color: black;
+        padding: 5px 10px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+        cursor: pointer;
+        margin: 5px;
+        border-radius: 15px;
+    }
+
+    /* Add a grey background color to dropdown links on hover */
+    .dropdown-content li:hover {
+        background-color: rgb(76, 160, 172);
+
+    }
+
+    /* Show the dropdown menu on hover */
+    #mob-filters:hover .dropdown-content {
+        display: block;
+    }
+
 }
 
 #input input:focus {
@@ -114,14 +239,20 @@ ul {
     color: rgb(76, 160, 172);
 }
 
-button {
+#btn {
     display: none;
-}
-
-#input button i {
+    border: none;
+    /* border: 2px solid red; */
     position: absolute;
     right: 30px;
     top: 24px;
+    background-color: transparent;
+}
+
+#input button i {
+    /* position: absolute;
+    right: 30px;
+    top: 24px; */
     font-size: 1.5rem;
     color: rgb(76, 160, 172);
 }
@@ -131,6 +262,7 @@ button i:hover {
 }
 
 .task-status {
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -143,21 +275,24 @@ button i:hover {
 #complete-task {
     display: flex;
     align-items: center;
-    /* justify-content: space-between; */
-    width: 165px;
+    justify-content: flex-start;
+    width: 50%;
+    /* border: 2px solid red; */
+    transform: scale(1);
     transition: all 0.1s ease-in-out;
 }
 
 #complete-task img {
-    height: 30px;
+    height: 25px;
     object-fit: contain;
 }
 
 #clear-completed {
+    /* border: 2px solid red; */
     display: flex;
     align-items: center;
-    /* justify-content: space-between; */
-    width: 150px;
+    justify-content: flex-end;
+    width: 50%;
     transform: scale(1);
     transition: all 0.1s ease-in-out;
 }
@@ -190,7 +325,7 @@ button i:hover {
     color: black;
     /* font-weight: 600; */
     /* font-style: italic; */
-    width: 500px;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     transition: all 0.2s ease-in-out;
@@ -276,6 +411,7 @@ button i:hover {
 }
 
 .task-filters {
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -284,8 +420,12 @@ button i:hover {
     /* border: 2px solid red; */
 }
 
+#mob-filters {
+    display: none;
+}
+
 #filters {
-    width: 220px;
+    width: 40%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -316,3 +456,6 @@ hr {
 h3 {
     padding: 20px;
 }
+
+/* responsiveness for mobile */
+@media screen and (max) {}
