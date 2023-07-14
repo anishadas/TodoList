@@ -18,9 +18,12 @@
                 <span><i class="fa-solid fa-clipboard-list"></i></span>
                 <input type="text" id="input-todo"
                     placeholder="Enter your todos" />
-                <button id="btn">
+                <button id="btn" class="add-btn">
                     <i class="fa-solid fa-circle-plus"></i>
                 </button>
+                <!-- <button class="edit-btn">
+                    save changes
+                </button> -->
             </div>
             <div class="task-status">
                 <div id="complete-task">
@@ -34,21 +37,7 @@
             </div>
             <hr />
             <ul id="todos">
-                <!-- <li>
-                    <input type="checkbox" id="todo" />
-                    <label for="todo">todo1</label>
-                    <div id="delete"><i class="fa-solid fa-trash"></i></div>
-                </li>
-                <li>
-                    <input type="checkbox" id="todo1" />
-                    <label for="todo1">shopping in the mall</label>
-                    <div id="delete"><i class="fa-solid fa-trash"></i></div>
-                </li>
-                <li>
-                    <input type="checkbox" id="todo12" />
-                    <label for="todo12">shopping in the mall</label>
-                    <div id="delete"><i class="fa-solid fa-trash"></i></div>
-                </li> -->
+                <!-- js content -->
             </ul>
             <hr />
             <div class="task-filters">
@@ -64,7 +53,7 @@
                     <button class="dropbtn">Todos Filters
                         <i class="fa-solid fa-caret-down"></i>
                     </button>
-                    <ul class="dropdown-content">
+                    <ul class="dropdown-content" id="drp-cnt">
                         <li id="all">All</li>
                         <li id="uncompleted">Uncomplete</li>
                         <li id="completed">Completed</li>

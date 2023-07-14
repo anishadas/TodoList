@@ -42,7 +42,7 @@ body {
     font-family: "Poppins", sans-serif !important;
 }
 
-@media screen and (max-width:800px) {
+@media screen and (max-width:1024px) {
     .header h1 {
         font-size: 3rem;
     }
@@ -53,12 +53,7 @@ body {
     }
 }
 
-@media screen and (max-width:500px) {
-    .header h1 {
-        font-size: 3rem;
-    }
 
-}
 
 .header h1:nth-child(1) {
     color: transparent;
@@ -127,7 +122,23 @@ ul {
     box-shadow: rgba(197, 197, 214, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
+@media screen and (max-width:768px) {
+    .task-filters #filters {
+        display: none;
+    }
+
+    .task-filters #mob-filters {
+        display: block;
+        overflow: hidden;
+        float: left;
+    }
+}
+
 @media screen and (max-width:500px) {
+    .header h1 {
+        font-size: 2.5rem;
+    }
+
     #container {
         width: 70%;
     }
@@ -166,63 +177,6 @@ ul {
         margin-left: 8px;
     }
 
-    .task-filters #filters {
-        display: none;
-    }
-
-    #container .task-filters {
-        /* position: relative; */
-    }
-
-    .task-filters #mob-filters {
-        display: block;
-        overflow: hidden;
-        float: left;
-    }
-
-    .task-filters #mob-filters .dropbtn {
-        padding: 3px 5px;
-        border-radius: 5px;
-        background-color: white;
-        border: none;
-        font-size: 1rem;
-        color: #63605d;
-    }
-
-    .dropdown-content {
-        display: none;
-        position: absolute;
-        bottom: 90px;
-        right: 80px;
-        background-color: white;
-        min-width: 100px;
-        box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
-        z-index: 1;
-    }
-
-    /* li tags inside the dropdown */
-    .dropdown-content li {
-        float: none;
-        color: black;
-        padding: 5px 10px;
-        text-decoration: none;
-        display: block;
-        text-align: left;
-        cursor: pointer;
-        margin: 5px;
-        border-radius: 15px;
-    }
-
-    /* Add a grey background color to dropdown links on hover */
-    .dropdown-content li:hover {
-        background-color: rgb(76, 160, 172);
-
-    }
-
-    /* Show the dropdown menu on hover */
-    #mob-filters:hover .dropdown-content {
-        display: block;
-    }
 
 }
 
@@ -239,7 +193,7 @@ ul {
     color: rgb(76, 160, 172);
 }
 
-#btn {
+.add-btn {
     display: none;
     border: none;
     /* border: 2px solid red; */
@@ -249,15 +203,14 @@ ul {
     background-color: transparent;
 }
 
-#input button i {
-    /* position: absolute;
-    right: 30px;
-    top: 24px; */
-    font-size: 1.5rem;
+
+
+#input .add-btn i {
+    font-size: 1.6rem;
     color: rgb(76, 160, 172);
 }
 
-button i:hover {
+.add-btn i:hover {
     cursor: pointer;
 }
 
@@ -391,21 +344,25 @@ button i:hover {
     font-style: italic;
 }
 
-#delete {
+#delete,#edit {
     height: 40px;
     padding: 5px;
     border-radius: 50%;
     transition: all ease-in-out;
     /* box-shadow: rgba(0, 0, 0, 0.24) 3px 3px 8px; */
 }
+#edit{
+    padding: 8px;
+    /* border: 2px solid red; */
+}
 
-#delete img {
+#delete img,#edit img {
     height: 100%;
     width: 100%;
     object-fit: contain;
 }
 
-#delete:hover {
+#delete:hover,#edit:hover {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 4px, rgba(0, 0, 0, 0.24) 0px -1px 4px;
     cursor: pointer;
 }
@@ -457,5 +414,45 @@ h3 {
     padding: 20px;
 }
 
-/* responsiveness for mobile */
-@media screen and (max) {}
+
+/* for smaller devices */
+.task-filters #mob-filters .dropbtn {
+    padding: 3px 5px;
+    border-radius: 5px;
+    background-color: white;
+    border: none;
+    font-size: 1rem;
+    color: #63605d;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    bottom: 90px;
+    /* right: 80px; */
+    background-color: white;
+    min-width: 100px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    z-index: 1;
+}
+
+/* li tags inside the dropdown */
+.dropdown-content li {
+    float: none;
+    color: black;
+    padding: 5px 10px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    cursor: pointer;
+    margin: 5px;
+    border-radius: 15px;
+}
+
+/* Add a grey background color to dropdown links on hover */
+.dropdown-content li:hover {
+    background-color: rgb(76, 160, 172);
+
+}
+

@@ -4,9 +4,11 @@ const complete_all = document.getElementById("complete");
 const clear_completed = document.getElementById("clear-completed");
 const todos = document.getElementById("todos");
 const tasks_left_count = document.getElementById("task-left");
+const dropdown_content = document.getElementById("drp-cnt");
 
 let Mytodos = JSON.parse(localStorage.getItem("TODOS")) || [];
 let interval;
+let edit_id = null;
 // listening for todos
 add_btn.addEventListener("click", handleClickToAdd);
 document.addEventListener("click", handleClickEvents);
@@ -14,21 +16,36 @@ document.addEventListener("click", handleClickEvents);
 // for add todo icon
 input.addEventListener("focus", () => {
     clearTimeout(interval)
+    add_btn.innerHTML = `<i class="fa-solid fa-circle-plus"></i>`;
     add_btn.style.display = "block";
 })
 input.addEventListener("blur", () => {
     interval = setTimeout(() => {
         add_btn.style.display = "none";
-    },1000);
+    }, 1000);
 })
 
 function handleClickToAdd(e) {
-    // e.preventDefault();
+    e.preventDefault();
     if (input.value.trim()) {
-        let todo = input.value;
-        addTodo(todo);
-        input.value = "";
+        if (edit_id == null) {
+            let todo = input.value;
+            addTodo(todo);
+            input.value = "";
+        }
+        else {
+            Mytodos.map(todo => {
+                if (todo.id == edit_id) {
+                    todo.text = input.value;
+                }
+                return todo;
+            })
+            input.value = "";
+            localStorage.setItem("TODOS", JSON.stringify(Mytodos));
+            renderTodos();
+        }
     }
+    
 }
 
 // handling all click events
@@ -37,6 +54,10 @@ function handleClickEvents(e) {
     if (e.target.className == "delete-img") {
         const id = e.target.id;
         deleteTodo(id);
+    }
+    if (e.target.className == "edit-img") {
+        const id = e.target.id;
+        editTodo(id);
     }
     if (e.target.className == "check-box") {
         const id = e.target.id;
@@ -51,6 +72,13 @@ function handleClickEvents(e) {
     if (e.target.id == "all" || e.target.id == "completed" || e.target.id == "uncompleted") {
         let filter = e.target.id;
         filterTodos(filter);
+    }
+    // for smaller screens
+    if (e.target.className == "dropbtn" || e.target.className == "fa-solid fa-caret-down") {
+        dropdown_content.style.display="block"
+    }
+    else {
+        dropdown_content.style.display = "none"
     }
 }
 
@@ -67,6 +95,7 @@ function renderTodos(todosRender = Mytodos) {
             <li>
                 <input type="checkbox" id=${item.id} ${item.done ? "checked" : null} class="check-box"/>
                 <label for=${item.id}>${item.text}</label>
+                <div id="edit"><img src="./images/edit.png"  alt="edit" class="edit-img" id=${item.id} /> </div>
                 <div id="delete"><img src="./images/delete.png" alt="delete" class="delete-img" id=${item.id} /></div>
             </li>
             `
@@ -98,6 +127,13 @@ function deleteTodo(id) {
     renderTodos();
 }
 
+function editTodo(id) {
+    edit_id = id;
+    let editTodo = Mytodos.filter(todo => todo.id == id);
+    input.value = editTodo[0].text;
+    input.focus();
+    add_btn.innerHTML = `<i class="fa-solid fa-floppy-disk"></i>`
+}
 // toggle todo status
 function toggleStatus(id) {
     Mytodos.map(todo => {
