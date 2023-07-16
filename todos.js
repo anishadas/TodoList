@@ -5,13 +5,22 @@ const clear_completed = document.getElementById("clear-completed");
 const todos = document.getElementById("todos");
 const tasks_left_count = document.getElementById("task-left");
 const dropdown_content = document.getElementById("drp-cnt");
+const all_filter = document.getElementById("all");
+all_filter.style.color = "rgb(76, 160, 172)"
+
 
 let Mytodos = JSON.parse(localStorage.getItem("TODOS")) || [];
 let interval;
 let edit_id = null;
+
 // listening for todos
-add_btn.addEventListener("click", handleClickToAdd);
-document.addEventListener("click", handleClickEvents);
+function startExecution() {
+    add_btn.addEventListener("click", handleClickToAdd);
+    document.addEventListener("click", handleClickEvents);
+    renderTodos();
+}
+
+startExecution();
 
 // for add todo icon
 input.addEventListener("focus", () => {
@@ -42,10 +51,11 @@ function handleClickToAdd(e) {
             })
             input.value = "";
             localStorage.setItem("TODOS", JSON.stringify(Mytodos));
+            edit_id = null;
             renderTodos();
         }
     }
-    
+
 }
 
 // handling all click events
@@ -75,7 +85,7 @@ function handleClickEvents(e) {
     }
     // for smaller screens
     if (e.target.className == "dropbtn" || e.target.className == "fa-solid fa-caret-down") {
-        dropdown_content.style.display="block"
+        dropdown_content.style.display = "block"
     }
     else {
         dropdown_content.style.display = "none"
@@ -107,6 +117,7 @@ function renderTodos(todosRender = Mytodos) {
     }
     tasks_left_count.innerHTML = `${count} task left`
 }
+
 // adding todos
 function addTodo(todo) {
     const list = {
@@ -127,6 +138,7 @@ function deleteTodo(id) {
     renderTodos();
 }
 
+// edit todo
 function editTodo(id) {
     edit_id = id;
     let editTodo = Mytodos.filter(todo => todo.id == id);
@@ -134,6 +146,7 @@ function editTodo(id) {
     input.focus();
     add_btn.innerHTML = `<i class="fa-solid fa-floppy-disk"></i>`
 }
+
 // toggle todo status
 function toggleStatus(id) {
     Mytodos.map(todo => {
@@ -145,6 +158,7 @@ function toggleStatus(id) {
     renderTodos();
 }
 
+// complete all todos
 function commpleteAllTodos() {
     Mytodos.map(todo => {
         todo.done = true;
@@ -153,26 +167,34 @@ function commpleteAllTodos() {
     renderTodos();
 }
 
+// delete all completed
 function clearCompleted() {
     const updatedTodos = Mytodos.filter(todo => todo.done != true);
     Mytodos = updatedTodos;
     localStorage.setItem("TODOS", JSON.stringify(Mytodos));
     renderTodos();
 }
-renderTodos();
 
 // filters - All ,Uncompleted, Completed
 function filterTodos(filter) {
-    console.log(filter)
+    // initial colors
+    document.getElementById("uncompleted").style.color = "#63605d";
+    document.getElementById("completed").style.color = "#63605d";
+    document.getElementById("all").style.color = "#63605d";
+
+    // when a filter is selected
     if (filter == "uncompleted") {
         const updatedTodos = Mytodos.filter(todo => todo.done != true);
+        document.getElementById("uncompleted").style.color = "rgb(76, 160, 172)"
         renderTodos(updatedTodos);
     }
     else if (filter == "completed") {
         const updatedTodos = Mytodos.filter(todo => todo.done == true);
+        document.getElementById("completed").style.color = "rgb(76, 160, 172)"
         renderTodos(updatedTodos);
     }
     else {
+        document.getElementById("all").style.color = "rgb(76, 160, 172)";
         renderTodos();
     }
 }
